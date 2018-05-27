@@ -1,39 +1,40 @@
 package com.jbesic.gui;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import com.jbesic.Main;
-
-import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import javax.swing.JFrame;
 
 public class JBFrame extends JFrame {
 
-    JBFrame(String windowTitle) {
-        super(windowTitle);
-        
-        InputStream windowIconStream = Main.class.getResourceAsStream("images/survey-icon.png");
-        try {
-			setIconImage(ImageIO.read(windowIconStream));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        
-        setSize(600, 400);
-        setBackground(new Color(255, 255, 255));
+    private JBFrame() {
+        super();
+
+        setTitle("Survey");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(640, 480));
+        pack();
+        setVisible(true);
     }
 
     @Override
-    public Component add(Component arg0) {
-    	this.removeAll();
-    	this.revalidate();
-    	
-    	super.add(arg0);
-    	
-    	this.setVisible(true);
-    	return arg0;
+    public Component add(Component comp) {
+        Container contentPane = getContentPane();
+        contentPane.removeAll();
+        contentPane.add(comp);
+        contentPane.revalidate();
+        contentPane.repaint();
+        return super.add(comp);
+    }
+
+    static JBFrame frame;
+
+    public static JFrame getFrame() {
+
+        if (!(JBFrame.frame instanceof JFrame)) {
+            JBFrame.frame = new JBFrame();
+        }
+
+        return JBFrame.frame;
     }
 }
