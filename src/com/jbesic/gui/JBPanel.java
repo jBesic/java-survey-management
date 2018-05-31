@@ -20,7 +20,7 @@ import java.awt.Insets;
  */
 public class JBPanel extends JPanel {
 
-    private final Border border = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+    private final Border border = BorderFactory.createEmptyBorder(5, 5, 30, 5);
     private final Color backgroundColor = new Color(255, 255, 255);
     private final Dimension size = new Dimension(640, 480);
     public GridBagLayout gridBagLayout = new GridBagLayout();

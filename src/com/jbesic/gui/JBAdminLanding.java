@@ -24,7 +24,7 @@ public class JBAdminLanding extends JBPanel {
     }
 
     private void buildCategories() {
-        JBParagraph categoriesHeader = new JBParagraph("List of created categories");
+        JBHeadline categoriesHeader = new JBHeadline("List of created categories");
         JBPanel categoriesWrapper = new JBPanel();
         buildCategoriesRow(categoriesWrapper);
 
@@ -36,7 +36,7 @@ public class JBAdminLanding extends JBPanel {
     private void buildCategoriesRow(JBPanel categoriesWrapper) {
         List<Map<String, Object>> fetchedCategories = JBCategory.getCategories();
         for (final Map<String, Object> category : fetchedCategories) {
-            JBParagraph categoryName = new JBParagraph((String) category.get("Name"));
+            JBHeadline categoryName = new JBHeadline((String) category.get("Name"));
             JBParagraph categoryDescription = new JBParagraph((String) category.get("Description"));
             JBButton categoryManage = new JBButton("Manage");
 
@@ -61,7 +61,7 @@ public class JBAdminLanding extends JBPanel {
     }
 
     private void buildSurveys() {
-        JBParagraph surveysHeader = new JBParagraph("List of created surveys");
+        JBHeadline surveysHeader = new JBHeadline("List of created surveys");
         JBPanel surveysWrapper = new JBPanel();
         buildSurveysRow(surveysWrapper);
 
@@ -73,7 +73,7 @@ public class JBAdminLanding extends JBPanel {
     private void buildSurveysRow(JBPanel surveysWrapper) {
         List<Map<String, Object>> fetchedSurveys = JBSurvey.getSurveys();
         for (final Map<String, Object> survey : fetchedSurveys) {
-            JBParagraph surveyName = new JBParagraph((String) survey.get("Name"));
+            JBHeadline surveyName = new JBHeadline((String) survey.get("Name"));
             JBParagraph surveyDescription = new JBParagraph((String) survey.get("Description"));
             JBButton surveyManage = new JBButton("Manage");
 

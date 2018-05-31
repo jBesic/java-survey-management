@@ -5,6 +5,7 @@ import com.jbesic.components.JBPossibleAnswer;
 import com.jbesic.components.JBQuestion;
 import com.jbesic.components.JBSurvey;
 import com.jbesic.components.JBTypes;
+import com.jbesic.helpers.JBHelperFunctions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -44,7 +45,7 @@ public class JBRegularSurvey extends JBPanel {
     }
 
     private void buildSurvey() {
-        JBParagraph surveyHeader = new JBParagraph("Survey details");
+        JBHeadline surveyHeader = new JBHeadline("Survey details");
         JBPanel surveyWrapper = new JBPanel();
         buildSurveyRow(surveyWrapper);
 
@@ -55,7 +56,7 @@ public class JBRegularSurvey extends JBPanel {
 
     private void buildSurveyRow(JBPanel surveyWrapper) {
         JBSurvey fetchedSurvey = JBSurvey.getSurveyById(SurveyId);
-        JBParagraph surveyName = new JBParagraph(fetchedSurvey.getName());
+        JBHeadline surveyName = new JBHeadline(fetchedSurvey.getName());
         JBParagraph surveyDescription = new JBParagraph(fetchedSurvey.getDescription());
 
         JBPanel surveyRow = new JBPanel();
@@ -67,7 +68,7 @@ public class JBRegularSurvey extends JBPanel {
     }
 
     private void buildQuestions() {
-        JBParagraph questionsHeader = new JBParagraph("List of questions");
+        JBHeadline questionsHeader = new JBHeadline("List of questions");
         JBPanel questionsWrapper = new JBPanel();
         buildQuestionsRow(questionsWrapper);
 
@@ -88,26 +89,28 @@ public class JBRegularSurvey extends JBPanel {
             Map<Integer, String> definedTypes = JBTypes.getTypes();
             if ("Text".equals(definedTypes.get((Integer) question.get("TypeId")))) {
                 final JBTextArea textArea = new JBTextArea();
+                textArea.setName(JBHelperFunctions.createUniqueID());
 
                 textArea.addFocusListener(new FocusListener() {
                     public void focusGained(FocusEvent e) {
                     }
 
                     public void focusLost(FocusEvent e) {
-                        answersManager.add((Integer) question.get("Id"), textArea.getText(), 1);
+                        answersManager.add((Integer) question.get("Id"), textArea.getText(), 1, textArea.getName());
                     }
                 });
 
                 questionRow.add(textArea, questionRow.gridBagConstraints);
             } else if ("Textarea".equals(definedTypes.get((Integer) question.get("TypeId")))) {
                 final JBTextArea textArea = new JBTextArea();
+                textArea.setName(JBHelperFunctions.createUniqueID());
 
                 textArea.addFocusListener(new FocusListener() {
                     public void focusGained(FocusEvent e) {
                     }
 
                     public void focusLost(FocusEvent e) {
-                        answersManager.add((Integer) question.get("Id"), textArea.getText(), 1);
+                        answersManager.add((Integer) question.get("Id"), textArea.getText(), 1, textArea.getName());
                     }
                 });
 
@@ -118,10 +121,11 @@ public class JBRegularSurvey extends JBPanel {
                 List<Map<String, Object>> possibleAnswers = JBPossibleAnswer.getAnswerByQuestionId((Integer) question.get("Id"));
                 for (Map<String, Object> possibleAnswer : possibleAnswers) {
                     final JBRadioButton radioButton = new JBRadioButton((String) possibleAnswer.get("Answer"));
+                    radioButton.setName(JBHelperFunctions.createUniqueID());
 
                     radioButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            answersManager.add((Integer) question.get("Id"), radioButton.getText(), 1);
+                            answersManager.add((Integer) question.get("Id"), radioButton.getText(), 1, radioButton.getName());
                         }
                     });
 
@@ -136,10 +140,11 @@ public class JBRegularSurvey extends JBPanel {
                 List<Map<String, Object>> possibleAnswers = JBPossibleAnswer.getAnswerByQuestionId((Integer) question.get("Id"));
                 for (Map<String, Object> possibleAnswer : possibleAnswers) {
                     final JBCheckBox checkboxButton = new JBCheckBox((String) possibleAnswer.get("Answer"));
+                    checkboxButton.setName(JBHelperFunctions.createUniqueID());
 
                     checkboxButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            answersManager.add((Integer) question.get("Id"), checkboxButton.getText(), 1);
+                            answersManager.add((Integer) question.get("Id"), checkboxButton.getText(), 1, checkboxButton.getName());
                         }
                     });
 

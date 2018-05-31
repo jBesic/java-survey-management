@@ -4,6 +4,6 @@ public class JBApplication {
 
     JBApplication() {
         // Dummy data
-//            JBDummyData.generateTables();
+        // JBDummyData.generateTables();
     }
 }

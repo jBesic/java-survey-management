@@ -38,7 +38,7 @@ public class JBAdminSurvey extends JBPanel {
     }
 
     private void buildSurvey() {
-        JBParagraph surveyHeader = new JBParagraph("Survey details");
+        JBHeadline surveyHeader = new JBHeadline("Survey details");
         JBPanel surveyWrapper = new JBPanel();
         buildSurveyRow(surveyWrapper);
 
@@ -72,7 +72,7 @@ public class JBAdminSurvey extends JBPanel {
     }
 
     private void buildQuestions() {
-        JBParagraph questionsHeader = new JBParagraph("List of questions");
+        JBHeadline questionsHeader = new JBHeadline("List of questions");
         JBPanel questionsWrapper = new JBPanel();
         buildQuestionsRow(questionsWrapper);
 

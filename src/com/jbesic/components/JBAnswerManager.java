@@ -11,18 +11,18 @@ public class JBAnswerManager {
 
     private ArrayList<JBAnswer> answers = new ArrayList<JBAnswer>();
 
-    public JBAnswerManager add(int QuestionId, String Answer, int UserId) {
+    public JBAnswerManager add(int QuestionId, String Answer, int UserId, String componentId) {
         Boolean answerIsUpdated = false;
 
         for (JBAnswer answer : answers) {
-            if (answer.getQuestionId() == QuestionId) {
+            if (answer.getComponentId().equals(componentId)) {
                 answer.setAnswer(Answer);
                 answerIsUpdated = true;
             }
         }
 
         if (!answerIsUpdated) {
-            JBAnswer answer = new JBAnswer().setQuestionId(QuestionId).setAnswer(Answer).setUserId(UserId);
+            JBAnswer answer = new JBAnswer().setQuestionId(QuestionId).setAnswer(Answer).setUserId(UserId).setComponentId(componentId);
             this.answers.add(answer);
         }
 

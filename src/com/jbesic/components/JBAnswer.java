@@ -6,6 +6,7 @@ public class JBAnswer {
     private int QuestionId;
     private String Answer;
     private int UserId;
+    private String ComponentId;
 
     public int getId() {
         return this.Id;
@@ -13,6 +14,15 @@ public class JBAnswer {
 
     public JBAnswer setId(int id) {
         this.Id = id;
+        return this;
+    }
+
+    public String getComponentId() {
+        return this.ComponentId;
+    }
+
+    public JBAnswer setComponentId(String componentId) {
+        this.ComponentId = componentId;
         return this;
     }
 

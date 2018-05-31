@@ -38,7 +38,7 @@ public class JBAdminCategory extends JBPanel {
     }
 
     private void buildCategory() {
-        JBParagraph categoryHeader = new JBParagraph("Category details");
+        JBHeadline categoryHeader = new JBHeadline("Category details");
         JBPanel categoryWrapper = new JBPanel();
         buildCategoryRow(categoryWrapper);
 
@@ -72,7 +72,7 @@ public class JBAdminCategory extends JBPanel {
     }
 
     private void buildSurveys() {
-        JBParagraph surveysHeader = new JBParagraph("List of created surveys");
+        JBHeadline surveysHeader = new JBHeadline("List of created surveys");
         JBPanel surveysWrapper = new JBPanel();
         buildSurveysRow(surveysWrapper);
 
@@ -84,7 +84,7 @@ public class JBAdminCategory extends JBPanel {
     private void buildSurveysRow(JBPanel surveysWrapper) {
         List<Map<String, Object>> fetchedSurveys = JBSurvey.getSurveysByCategoryId(CategoryId);
         for (final Map<String, Object> survey : fetchedSurveys) {
-            JBParagraph surveyName = new JBParagraph((String) survey.get("Name"));
+            JBHeadline surveyName = new JBHeadline((String) survey.get("Name"));
             JBParagraph surveyDescription = new JBParagraph((String) survey.get("Description"));
             JBButton surveyManage = new JBButton("Manage");
 
