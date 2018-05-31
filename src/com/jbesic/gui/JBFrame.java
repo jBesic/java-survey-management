@@ -3,6 +3,9 @@ package com.jbesic.gui;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import javax.swing.JFrame;
 
 public class JBFrame extends JFrame {
@@ -12,7 +15,7 @@ public class JBFrame extends JFrame {
 
         setTitle("Survey");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(640, 480));
+        setPreferredSize(new Dimension(800, 600));
         pack();
         setVisible(true);
     }

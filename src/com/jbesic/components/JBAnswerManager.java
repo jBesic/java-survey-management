@@ -28,6 +28,18 @@ public class JBAnswerManager {
 
         return this;
     }
+    
+    public JBAnswerManager remove(String componentId) {
+
+        for (JBAnswer answer : answers) {
+            if (answer.getComponentId().equals(componentId)) {
+                answers.remove(answer);
+                break;
+            }
+        }
+
+        return this;
+    }
 
     public void submit() {
 

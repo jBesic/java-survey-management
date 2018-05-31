@@ -116,16 +116,16 @@ public class JBRegularSurvey extends JBPanel {
 
                 questionRow.add(textArea, questionRow.gridBagConstraints);
             } else if ("Radio".equals(definedTypes.get((Integer) question.get("TypeId")))) {
-                JBPanel radioPanel = new JBPanel();
+                final JBPanel radioPanel = new JBPanel();
+                radioPanel.setName(JBHelperFunctions.createUniqueID());
                 JBButtonGroup questionAnswer = new JBButtonGroup();
                 List<Map<String, Object>> possibleAnswers = JBPossibleAnswer.getAnswerByQuestionId((Integer) question.get("Id"));
                 for (Map<String, Object> possibleAnswer : possibleAnswers) {
                     final JBRadioButton radioButton = new JBRadioButton((String) possibleAnswer.get("Answer"));
-                    radioButton.setName(JBHelperFunctions.createUniqueID());
 
                     radioButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            answersManager.add((Integer) question.get("Id"), radioButton.getText(), 1, radioButton.getName());
+                            answersManager.add((Integer) question.get("Id"), radioButton.getText(), 1, radioPanel.getName());
                         }
                     });
 
@@ -144,7 +144,11 @@ public class JBRegularSurvey extends JBPanel {
 
                     checkboxButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            answersManager.add((Integer) question.get("Id"), checkboxButton.getText(), 1, checkboxButton.getName());
+                            if (checkboxButton.isSelected()) {
+                                answersManager.add((Integer) question.get("Id"), checkboxButton.getText(), 1, checkboxButton.getName());
+                            } else {
+                                answersManager.remove(checkboxButton.getName());
+                            }
                         }
                     });
 
